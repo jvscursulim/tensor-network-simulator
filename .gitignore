@@ -1,1 +1,4 @@
 *_venv/
+__pycache__/
+.nox/
+.pytest_cache/
