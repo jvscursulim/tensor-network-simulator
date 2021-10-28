@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 import tensornetwork as tn
 
-from tsim.gates import Gate, RZ, RY, RX
+from tsim.gates import Gate, RZ, RY, RX, CX
 
 
 class TestGate(unittest.TestCase):
@@ -61,5 +61,21 @@ class TestRX(unittest.TestCase):
         self.assertTrue(np.allclose(self.gate.matrix, self.expected_matrix))
 
     def test_RX_tensor(self):
+
+        self.assertTrue(np.allclose(self.gate.node.tensor, self.expected_matrix))
+
+
+class TestCX(unittest.TestCase):
+    def setUp(self) -> None:
+        self.gate = CX()
+        self.expected_matrix = np.array(
+            [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]
+        ).reshape(2, 2, 2, 2)
+
+    def test_CX_matrix(self):
+
+        self.assertTrue(np.allclose(self.gate.matrix, self.expected_matrix))
+
+    def test_CX_tensor(self):
 
         self.assertTrue(np.allclose(self.gate.node.tensor, self.expected_matrix))

@@ -64,3 +64,16 @@ class RX(Gate):
                 [-1.0j * np.sin(theta / 2.0), np.cos(theta / 2.0)],
             ]
         )
+
+
+class CX(Gate):
+    """CX
+    Two-qubit CNOT gate.
+
+    """
+
+    def _matrix(self):
+
+        return np.array(
+            [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]
+        ).reshape(2, 2, 2, 2)
